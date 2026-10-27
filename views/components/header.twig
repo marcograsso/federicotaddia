@@ -1,0 +1,86 @@
+{% set pagelist = ["Bio", "Prossimamente", "Contatti"] %}
+{% set archivelist = ["Parlo", "Scrivo", "Scrivo per altri che parlano"] %}
+
+<div class="absolute h-full top-0 w-full lg:p-8 p-4 flex items-start overflow-hidden justify-between {{animation}}">
+  <div class="flex items-start flex-col">
+      <!-- Logo -->
+      <a href="/" 
+        data-swup-animation='{{homepage}}'
+        class="z-500 p-2 cursor-pointer {{ color == 'dark' ? 'bg-white' : 'bg-transparent' }}">
+            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25.9746 34C24.6946 34 23.6946 33.68 22.9746 33.04C22.2813 32.3733 21.9346 31.3867 21.9346 30.08V13.44H17.4546V10H21.9746V2.8H26.3746V10H32.6546V13.44H26.4146V30.48H33.2946V34H25.9746Z"
+                    fill="{{ color == 'dark' ? 'black' : 'white' }}" />
+                <path d="M5.60021 34V13.44H0.720215V10H5.64021V4.44C5.64021 3.08 6.01355 2.06667 6.76021 1.4C7.50688 0.733335 8.53355 0.400002 9.84021 0.400002H16.4802V3.84H10.0402V10H16.0002V13.44H10.0802V34H5.60021Z"
+                    fill="{{ color == 'dark' ? 'black' : 'white' }}" />
+            </svg>
+      </a>
+      {% if navigation != 'hidden' %}
+        <div x-data="{ expanded: false }" x-init="setTimeout(() => { expanded = true; setTimeout(() => expanded = false, 2000); }, 50)" class="flex flex-col p-2 absolute lg:top-[80px] top-[70px] left md:w-2/3 z-600">
+        <div x-show="expanded" x-collapse.duration.1000ms class="flex flex-col gap-[5px] transition-all duration-300 ease-in-out">
+            {% if post.title != "Scrivo"%} 
+                <a href="/scrivo" @click="expanded = ! expanded" {% if post.title in pagelist %} data-swup-animation="archive" {% elseif post.title in archivelist %} data-swup-animation="same1" {% endif %}  class="group {{ color == 'dark' ? 'text-black' : 'text-white' }} font-funnel text-s font-[200] uppercase hover:translate-x-[0.5rem] translate-x-[-1.2rem] transition-all duration-400 hover:tracking-wider">
+                <span class="opacity-0 group-hover:opacity-100 transition-all duration-500 mr-2">✴</span>Scrivo
+                </a>
+            {% endif %}
+            {% if post.title != "Parlo"%}  
+                <a href="/parlo/" @click="expanded = ! expanded" {% if post.title in pagelist %} data-swup-animation="archive" {% elseif post.title in archivelist %} data-swup-animation="same2" {% endif %}  class="group {{ color == 'dark' ? 'text-black' : 'text-white' }} font-funnel text-s font-[200] uppercase hover:translate-x-[0.5rem] translate-x-[-1.2rem] transition-all duration-400 hover:tracking-wider">
+                <span class="opacity-0 group-hover:opacity-100 transition-all duration-500 mr-2">✴</span>Parlo
+                </a>
+            {% endif %}
+            {% if post.title != "Scrivo per altri che parlano"%}  
+                <a href="/scrivo-per-altri-che-parlano" @click="expanded = ! expanded" {% if post.title in pagelist %} data-swup-animation="archive" {% elseif post.title in archivelist %} data-swup-animation="same3" {% endif %}  class="group {{ color == 'dark' ? 'text-black' : 'text-white' }} font-funnel text-s font-[200] uppercase translate-x-[-1.2rem] hover:translate-x-[0.5rem] transition-all duration-400 hover:tracking-wide">
+                <span class="opacity-0 group-hover:opacity-100 transition-all duration-500 mr-2">✴</span><span class="">Scrivo per altri che parlano</span>
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Toggle Arrow -->
+        <svg 
+            @click="expanded = ! expanded"
+            :class="{ 'rotate-180': !expanded }"
+            class="cursor-pointer transition-transform duration-300 mt-[10px] transition-arrow"
+            width="19" height="11" viewBox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.646447" y1="9.64645" x2="9.64645" y2="0.646446" stroke="{{ color == 'dark' ? 'black' : 'white' }}"/>
+            <line y1="-0.5" x2="12.7279" y2="-0.5" transform="matrix(0.707107 0.707107 0.707107 -0.707107 10 1)" stroke="{{ color == 'dark' ? 'black' : 'white' }}"/>
+        </svg>
+      
+    </div>
+{% endif %}
+  </div>
+
+  <!-- Menu -->
+  <div class="flex flex-col text-right z-500">
+    <a onclick="window.dispatchEvent(new CustomEvent('open-prossimamente'))" class="{{ color == 'dark' ? 'bg-white hover:bg-black hover:text-white' : 'bg-transparent text-white hover:bg-black hover:text-white' }} lg:p-2 p-1 w-auto font-funnel text-right cursor-pointer">
+    Prossimamente
+    </a>
+    <a
+       {% if post.title in archivelist %}
+            href="/bio" data-swup-animation="bio2"
+            class="{{ color == 'dark' ? 'bg-white hover:bg-black hover:text-white' : 'bg-transparent text-white hover:bg-black hover:text-white' }} inline-block lg:p-2 p-1 w-auto font-funnel text-right cursor-pointer"
+       {% elseif post.title == "Bio"%}
+            href="#" data-swup-animation=""
+            class="{{ color == 'dark' ? ' bg-white text-black' : 'bg-white text-black' }} underline inline-block lg:p-2 p-1 w-auto font-funnel text-right cursor-default"
+       {% else %}
+            href="/bio" data-swup-animation="/bio"
+            class="{{ color == 'dark' ? 'bg-white hover:bg-black hover:text-white' : 'bg-transparent text-white hover:bg-black hover:text-white' }} inline-block lg:p-2 p-1 w-auto font-funnel text-right cursor-pointer"
+        {% endif %} 
+        >
+       Bio
+    </a>
+    <a
+       {% if post.title in archivelist %}
+            href="/contatti" data-swup-animation="bio2" 
+            class="{{ color == 'dark' ? 'bg-white hover:bg-black hover:text-white' : 'bg-transparent text-white hover:bg-black hover:text-white' }} inline-block lg:p-2 p-1 w-auto font-funnel text-right cursor-pointer"
+       {% elseif post.title == "Contatti"%}
+            href="#" data-swup-animation=""
+            class="{{ color == 'dark' ? ' bg-white text-black' : 'bg-white text-black' }} underline inline-block lg:p-2 p-1 w-auto font-funnel text-right cursor-default"
+       {% else %}
+            href="/contatti" data-swup-animation="/bio"
+            class="{{ color == 'dark' ? 'bg-white hover:bg-black hover:text-white' : 'bg-transparent text-white hover:bg-black hover:text-white' }} inline-block lg:p-2 p-1 w-auto font-funnel text-right cursor-pointer"
+        {% endif %} 
+       >
+       Contatti
+    </a>
+
+  </div>
+</div>

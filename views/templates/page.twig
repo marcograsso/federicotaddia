@@ -1,14 +1,16 @@
 {% extends "layouts/base.twig" %}
 
 {% block content %}
-  <div class="content-wrapper">
-    <article class="post-type-{{ post.type }}" id="post-{{ post.id }}">
-      <section class="article-content">
-        <h1 class="article-h1">{{ post.title }}</h1>
-        <div class="article-body">
-          {{ post.content }}
-        </div>
-      </section>
-    </article>s
+  {% if post.title == "Bio"%} 
+    {% include 'components/page-bio.twig' %}
+  {% elseif post.title == "Contatti"%} 
+    {% include 'components/page-contatti.twig' %}
+  {% elseif post.title == "Credits"%} 
+    {% include 'components/page-credits.twig' %}
+  {% else %}
+    {% include 'components/page-archive.twig' %}
+  {% endif %}
+  <div class="hidden">
+    {{ do_shortcode('[facetwp template="parlo_posts"]') }}
   </div>
 {% endblock content %}

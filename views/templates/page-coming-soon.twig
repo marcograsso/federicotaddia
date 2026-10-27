@@ -1,0 +1,42 @@
+{% extends "layouts/base.twig" %}
+
+{# Coming soon page (/coming-soon). Shown to logged-out visitors when "Modalità coming soon" is on (src/hooks.php). #}
+
+{% block content %}
+  <section
+    class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-24"
+  >
+    <!-- Logo -->
+    <div class="absolute top-0 left-0 p-4 lg:p-8">
+      <span class="block p-2">
+        <svg
+          width="34"
+          height="34"
+          viewBox="0 0 34 34"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Federico Taddia"
+        >
+          <path
+            d="M25.9746 34C24.6946 34 23.6946 33.68 22.9746 33.04C22.2813 32.3733 21.9346 31.3867 21.9346 30.08V13.44H17.4546V10H21.9746V2.8H26.3746V10H32.6546V13.44H26.4146V30.48H33.2946V34H25.9746Z"
+            fill="black"
+          />
+          <path
+            d="M5.60021 34V13.44H0.720215V10H5.64021V4.44C5.64021 3.08 6.01355 2.06667 6.76021 1.4C7.50688 0.733335 8.53355 0.400002 9.84021 0.400002H16.4802V3.84H10.0402V10H16.0002V13.44H10.0802V34H5.60021Z"
+            fill="black"
+          />
+        </svg>
+      </span>
+    </div>
+
+    <h1 class="font-funnel text-center text-3xl font-normal lg:text-5xl">
+      Federico Taddia
+    </h1>
+
+    <p
+      class="font-funnel mt-4 text-center text-sm font-light lg:mt-6 lg:text-base"
+    >
+      Coming soon
+    </p>
+  </section>
+{% endblock content %}

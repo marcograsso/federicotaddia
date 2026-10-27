@@ -1,0 +1,98 @@
+{% set bg_classes = {
+  orange: 'bg-[#F2660E]',
+  purple: 'bg-[#6F24BC]',
+  green: 'bg-[#22A44D]'
+} %}
+{% set homepage = 
+    post.title == "Scrivo" ? "homepage1" :
+    post.title == "Parlo" ? "homepage2" :
+    post.title == "Scrivo per altri che parlano" ? "homepage3" :
+    null
+%}
+
+
+  <div class="content-wrapper">
+    <div class="transition-white w-full block"></div>
+    <div id="page-header" class="transition-swipe {% if post.title == "Scrivo"%} bg-[#F2660E] {% elseif post.title == "Parlo"%} bg-[#6F24BC] {% else %} bg-[#22A44D] {% endif %} w-full page-header">
+    <div class="transition-color1 bg-[#F2660E] h-[400px] absolute top-0"></div>
+    <div class="transition-color2 bg-[#6F24BC] h-[400px] absolute top-0"></div>
+    <div class="transition-color3 bg-[#22A44D] h-[400px] absolute top-0"></div>
+    {% include 'components/header.twig' with { color: 'white', animation: 'transition-header', homepage : homepage } %}
+    <div class="w-full flex h-full items-end lg:p-8 p-4 overflow-hidden">
+      <div class="mwg_effect027 mwg_effect027-internal transition-title mwg_effect027-align-left">
+            <!-- Scrivo -->
+            {% if post.title == "Scrivo"%}
+            <ul>
+                <li class="[&_span]:lg:text-[8rem] [&_span]:text-[5rem] [&_span]:mr-1">
+                    <span class="letter font-funnel text-white"><span>S</span><span>S</span></span>
+                    <span class="letter font-funnel text-white"><span>C</span><span>C</span></span>
+                    <span class="letter font-funnel text-white"><span>R</span><span>R</span></span>
+                    <span class="letter font-funnel text-white"><span>I</span><span>I</span></span>
+                    <span class="letter font-funnel text-white"><span>V</span><span>V</span></span>
+                    <span class="letter font-funnel text-white text-[8rem] pr-4"><span>O</span><span>O</span></span>
+                </li>
+            </ul>
+            {% endif %}
+            <!-- Parlo -->
+            {% if post.title == "Parlo"%}
+            <ul>
+                <li class="[&_span]:lg:text-[8rem] [&_span]:text-[5rem] [&_span]:mr-1">
+                    <span class="letter font-funnel text-white"><span>P</span><span>P</span></span>
+                    <span class="letter font-funnel text-white"><span>A</span><span>A</span></span>
+                    <span class="letter font-funnel text-white"><span>R</span><span>R</span></span>
+                    <span class="letter font-funnel text-white"><span>L</span><span>L</span></span>
+                    <span class="letter font-funnel text-white text-[8rem] pr-4"><span>O</span><span>O</span></span>
+                </li>
+            </ul>
+            {% endif %}
+            <!-- Parlo -->
+            {% if post.title == "Scrivo per altri che parlano"%}
+            <p class="font-funnel text-white lg:text-[2rem] text-[1.5rem] mr-2 lg:ml-2">SCRIVO PER ALTRI CHE</p>
+            <ul>
+                <li class="[&_span]:lg:text-[8rem] [&_span]:text-[4rem] [&_span]:mr-[0.4rem]">
+                    <span class="letter font-funnel text-white"><span>P</span><span>P</span></span>
+                    <span class="letter font-funnel text-white"><span>A</span><span>A</span></span>
+                    <span class="letter font-funnel text-white"><span>R</span><span>R</span></span>
+                    <span class="letter font-funnel text-white text-[8rem] mr-4"><span>L</span><span>L</span></span>
+                    <span class="letter font-funnel text-white"><span>A</span><span>A</span></span>
+                    <span class="letter font-funnel text-white"><span>N</span><span>N</span></span>
+                    <span class="letter font-funnel text-white text-[8rem] pr-4"><span>O</span><span>O</span></span>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    <div class="lg:p-8 p-6 lg:ml-2 lg:mt-8 mt-5 content1">
+      {% if post.title == "Parlo"%}{{options.descrizione_parlo}}{% endif %}
+      {% if post.title == "Scrivo"%}{{options.descrizione_scrivo}}{% endif %}
+      {% if post.title == "Scrivo per altri che parlano"%}{{options.descrizione_parlano}}{% endif %}
+    </div>
+    <div class="lg:p-8 lg:ml-2 pt-0 content1">
+      <div class="mt-6 mb-8 py-2 sticky top-0 bg-white z-6000">
+        {{ do_shortcode(' [facetwp facet="categories"]') }}
+      </div>
+      <div class="archive-list border-b">
+        {% if post.title == "Parlo"%}{{ do_shortcode('[facetwp template="parlo_posts"]') }}{% endif %}
+        {% if post.title == "Scrivo"%}{{ do_shortcode(' [facetwp template="scrivo_posts"]') }}{% endif %}
+        {% if post.title == "Scrivo per altri che parlano"%}{{ do_shortcode(' [facetwp template="parlano_posts"]') }}{% endif %}
+      </div>
+      <div class="pt-10 flex items-center justify-center" data-load-more-wrap hidden>
+        {% include 'components/marquee-button.twig' with {
+          tag: 'button',
+          attrs: 'data-load-more',
+          label: 'Carica altri',
+          color: post.title == "Scrivo" ? 'orange' : post.title == "Parlo" ? 'purple' : 'green',
+          width: 'w-40'
+        } %}
+      </div>
+      <div class="pt-40">
+        {% include "partials/footer.twig" with { position: 'static' } %}
+      </div>
+    </div>
+    <div class="hidden">
+    {% include 'components/card.twig' %}
+    </div>
+  </div>
+
+    {% include 'components/prossimamente.twig' %}

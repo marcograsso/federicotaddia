@@ -1,17 +1,86 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "sans-serif";
+  --font-sans: "Montserrat", sans-serif;
+  --font-funnel: "Funnel Display", sans-serif;
 }
 
 @supports (font-variation-settings: normal) {
   @theme {
-    --font-sans: "InterVariable", sans-serif;
+    --font-sans: "Montserrat", sans-serif;
+    --font-funnel: "Funnel Display", sans-serif;
   }
+
   :root {
     font-optical-sizing: auto;
   }
 }
 
+.facetwp-radio {
+  @apply !bg-none !px-3 py-2 border border-transparent transition-transform duration-300 ease-in-out whitespace-nowrap;
+}
+
+.facetwp-radio:hover {
+  @apply underline underline-offset-[6px] decoration-1;
+}
+
+.facetwp-radio.checked {
+  @apply bg-black text-white border-black;
+}
+
+.facetwp-radio:hover.checked {
+  @apply no-underline;
+}
+
+.facetwp-counter {
+  @apply hidden;
+}
+
+.facetwp-display-value {
+  @apply uppercase font-funnel font-light !p-0 !tracking-[2px] ;
+}
+
+.facetwp-type-radio {
+  @apply flex items-center flex-nowrap gap-4 !m-0;
+}
+
+.facetwp-facet-categories {
+  @apply overflow-scroll lg:px-0 px-6;
+}
+
+/* Explicit background so footer mix-blend-difference has a backdrop to invert */
+body {
+  background-color: #fff;
+}
+
+/* Archive items: no divider lines around the hovered (coloured) item.
+   Items come from FacetWP listing templates (copy in views/components/card.twig). */
+.archive-list .facetwp-template > .group:hover,
+.archive-list .facetwp-template > .group:hover + .group {
+  border-top-color: transparent;
+}
+
+.archive-list:has(.facetwp-template > .group:last-child:hover) {
+  border-bottom-color: transparent;
+}
+
+/* WYSIWYG output (bio + archive cards): space between paragraphs, which preflight resets */
+.rich-text > * + * {
+  margin-top: 0.75em;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+/* Hide iubenda floating preferences button (opened from footer link instead) */
+html body button.iubenda-tp-btn.iubenda-cs-preferences-link[data-tp-float][data-tp-float] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 @plugin "@tailwindcss/forms";
 @import "./base.css";
+@import "./motion.css";

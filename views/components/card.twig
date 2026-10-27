@@ -1,0 +1,118 @@
+<?php if ( have_posts() ) : ?> <?php while ( have_posts() ) : the_post(); ?>
+<?php $immagine = get_field('immagine'); $descrizione =
+get_field('descrizione'); $sottotitolo = get_field('sottotitolo'); $link =
+get_field('ex_link'); $link_url = $link['url'] ?? ''; $link_title =
+$link['title'] ?? ''; $link_target = $link['target'] ?? '_self'; $is_libro =
+has_category('libri'); ?><div
+  class="group relative flex flex-col border-t py-6 hover:bg-[#F2660E] hover:!text-white md:flex-row"
+>
+  <?php if ($immagine) : ?><div
+    class="<?php echo $is_libro ? 'md:w-[20%]' : 'md:w-1/3'; ?> mb-4 w-full md:mb-0"
+  >
+    <img
+      src="<?php echo esc_url($immagine['url']); ?>"
+      alt=""
+      class="h-auto w-full object-contain"
+    />
+  </div><?php endif; ?><div
+    class="flex w-full flex-1 flex-col justify-between p-6"
+  >
+    <div>
+      <?php $anno = get_field('anno'); if ($anno) : ?><span class="font-montserrat mb-4 inline-block text-[17px] font-normal border border-black px-3 py-2 text-black group-hover:border-white group-hover:text-white"><?php echo esc_html($anno); ?></span><?php endif; ?>
+      <h2
+        class="font-montserrat text-2xl font-bold group-hover:text-white selection:bg-white selection:font-bold selection:text-[#F2660E]"
+      >
+        <?php the_title(); ?>
+      </h2><?php if ($sottotitolo) : ?><h3
+        class="font-montserrat text-xl font-semibold text-zinc-900 group-hover:text-white selection:bg-white selection:font-bold selection:text-[#F2660E]"
+      >
+        <?php echo wp_kses_post($sottotitolo); ?>
+      </h3><?php endif; ?>
+
+      <?php if ($descrizione) : ?><div
+        class="rich-text font-montserrat mt-3 group-hover:text-white"
+      >
+        <?php echo wp_kses_post($descrizione); ?>
+      </div><?php endif; ?>
+    </div><?php if ($link_url) : ?><a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"<?php echo $link_target === '_blank' ? ' rel="noopener"' : ''; ?> class="absolute inset-0 z-10" aria-label="<?php echo esc_attr(get_the_title()); ?>"></a><?php endif; ?>
+  </div>
+</div><?php endwhile; ?> <?php else : ?><p>
+  <?php _e( 'Sorry, no posts matched your criteria.' ); ?>
+</p><?php endif; ?>
+
+<?php if ( have_posts() ) : ?> <?php while ( have_posts() ) : the_post(); ?>
+<?php $immagine = get_field('immagine'); $descrizione =
+get_field('descrizione'); $sottotitolo = get_field('sottotitolo'); $link =
+get_field('ex_link'); $link_url = $link['url'] ?? ''; $link_title =
+$link['title'] ?? ''; $link_target = $link['target'] ?? '_self'; ?><div
+  class="group relative flex flex-col border-t py-6 hover:bg-[#22A44D] hover:!text-white md:flex-row"
+>
+  <?php if ($immagine) : ?><div
+    class="min-h-[15rem] w-full bg-cover bg-center bg-no-repeat md:w-1/3"
+    style="background-image: url('<?php echo esc_url($immagine['url']); ?>')"
+  ></div><?php endif; ?><div
+    class="flex w-full flex-col justify-between p-6 md:flex-1"
+  >
+    <!-- Content Block -->
+    <div>
+      <?php $anno = get_field('anno'); if ($anno) : ?><span class="font-montserrat mb-4 inline-block text-[17px] font-normal border border-black px-3 py-2 text-black group-hover:border-white group-hover:text-white"><?php echo esc_html($anno); ?></span><?php endif; ?>
+      <h2
+        class="font-montserrat text-2xl font-bold group-hover:text-white selection:bg-white selection:font-bold selection:text-[#22A44D]"
+      >
+        <?php the_title(); ?>
+      </h2><?php if ($sottotitolo) : ?><h3
+        class="font-montserrat text-xl font-semibold text-zinc-900 group-hover:text-white selection:bg-white selection:font-bold selection:text-[#22A44D]"
+      >
+        <?php echo wp_kses_post($sottotitolo); ?>
+      </h3><?php endif; ?>
+
+      <?php if ($descrizione) : ?><div
+        class="rich-text font-montserrat mt-3 group-hover:text-white"
+      >
+        <?php echo wp_kses_post($descrizione); ?>
+      </div><?php endif; ?>
+    </div><?php if ($link_url) : ?><a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"<?php echo $link_target === '_blank' ? ' rel="noopener"' : ''; ?> class="absolute inset-0 z-10" aria-label="<?php echo esc_attr(get_the_title()); ?>"></a><?php endif; ?>
+  </div>
+</div><?php endwhile; ?> <?php else : ?><p>
+  <?php _e( 'Sorry, no posts matched your criteria.' ); ?>
+</p><?php endif; ?>
+
+<?php if ( have_posts() ) : ?> <?php while ( have_posts() ) : the_post(); ?>
+<?php $immagine = get_field('immagine'); $descrizione =
+get_field('descrizione'); $sottotitolo = get_field('sottotitolo'); $link =
+get_field('ex_link'); $link_url = $link['url'] ?? ''; $link_title =
+$link['title'] ?? ''; $link_target = $link['target'] ?? '_self'; ?><div
+  class="group relative flex flex-col border-t py-6 hover:bg-[#6F24BC] hover:!text-white md:flex-row"
+>
+  <?php if ($immagine) : ?><div
+    class="min-h-[15rem] w-full bg-cover bg-center bg-no-repeat md:w-1/3"
+    style="background-image: url('<?php echo esc_url($immagine['url']); ?>')"
+  ></div><?php endif; ?><div
+    class="flex w-full flex-col justify-between p-6 md:flex-1"
+  >
+    <!-- Content Block -->
+    <div>
+      <?php $anno = get_field('anno'); if ($anno) : ?><span class="font-montserrat mb-4 inline-block text-[17px] font-normal border border-black px-3 py-2 text-black group-hover:border-white group-hover:text-white"><?php echo esc_html($anno); ?></span><?php endif; ?>
+      <h2
+        class="font-montserrat text-2xl font-bold group-hover:text-white selection:bg-white selection:font-bold selection:text-[#6F24BC]"
+      >
+        <?php the_title(); ?>
+      </h2><?php if ($sottotitolo) : ?><h3
+        class="font-montserrat text-xl font-semibold text-zinc-900 group-hover:text-white selection:bg-white selection:font-bold selection:text-[#6F24BC]"
+      >
+        <?php echo wp_kses_post($sottotitolo); ?>
+      </h3><?php endif; ?>
+
+      <?php if ($descrizione) : ?><div
+        class="rich-text font-montserrat mt-3 group-hover:text-white"
+      >
+        <?php echo wp_kses_post($descrizione); ?>
+      </div><?php endif; ?>
+    </div>
+
+    <!-- Link Block -->
+    <?php if ($link_url) : ?><a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"<?php echo $link_target === '_blank' ? ' rel="noopener"' : ''; ?> class="absolute inset-0 z-10" aria-label="<?php echo esc_attr(get_the_title()); ?>"></a><?php endif; ?>
+  </div>
+</div><?php endwhile; ?> <?php else : ?><p>
+  <?php _e( 'Sorry, no posts matched your criteria.' ); ?>
+</p><?php endif; ?>

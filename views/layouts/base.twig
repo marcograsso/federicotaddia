@@ -2,11 +2,12 @@
 <html {{ site.language_attributes }}>
   {% block head %}
     {% include "partials/head.twig" %}
+    
   {% endblock head %}
   <body class="{{ body_class }}">
     {{ function("wp_body_open") }}
-    {% include "components/tailwind-debugger.twig" %}
-    <main>
+    {# {% include "components/tailwind-debugger.twig" %} #}
+    <main id="swup">
       {% block content %}
 
       {% endblock content %}

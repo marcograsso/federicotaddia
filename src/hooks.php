@@ -9,8 +9,25 @@ function my_acfe_modules()
     // Enable Force Sync
     acf_update_setting("acfe/modules/force_sync", true);
 
-    // Enable Force Sync Deleted Json
-    acf_update_setting("acfe/modules/force_sync/delete", true);
+    // Force Sync Deleted Json: disabled. There is no acf-json folder, and ACFE Pro 0.9.2.6
+    // fatals in sync_deleted_field_groups() (in_array on null acfe.autosync) for groups without one.
+    acf_update_setting("acfe/modules/force_sync/delete", false);
+}
+
+// Coming soon mode (Settings > "Coming soon" tab): visitors who are not logged in
+// only see /coming-soon. template_redirect is front-end only, so admin/login/ajax/REST are untouched.
+add_action("template_redirect", "coming_soon_redirect");
+function coming_soon_redirect()
+{
+    if (!function_exists("get_field") || !get_field("coming_soon", "option")) {
+        return;
+    }
+    if (is_user_logged_in() || is_page("coming-soon")) {
+        return;
+    }
+    nocache_headers();
+    wp_safe_redirect(home_url("/coming-soon/"), 302);
+    exit();
 }
 
 // Fixes site previews when shared on Discord

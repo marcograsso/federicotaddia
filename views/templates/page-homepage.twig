@@ -1,9 +1,66 @@
-{% extends "layouts/base.twig" %}
+{% extends"layouts/base.twig" %}
 {% block content %}
-  <section class="flex h-svh w-full">
-    {{ include("components/hero-carousel.twig") }}
+  {% include 'components/header.twig' with { color: 'dark', navigation: 'hidden'} %}
+  <section class="mwg_effect021 lg:mt-0 pt-10">
+      <div class="motion-container">
+        <div class="mwg_effect027 mwg_effect027-align-center">
+            <ul class="transition-main-right">
+                <li class="[&_span]:p-[0.15rem] [&_span]:xl:text-[11rem] [&_span]:lg:text-[8rem] [&_span]:text-[5.5rem] md:!flex !hidden">
+                    <span class="letter font-funnel"><span>F</span><span>F</span></span>
+                    <span class="letter font-funnel"><span>e</span><span>e</span></span>
+                    <span class="letter font-funnel"><span>d</span><span>d</span></span>
+                    <span class="letter font-funnel"><span>e</span><span>e</span></span>
+                    <span class="letter font-funnel"><span>r</span><span>r</span></span> 
+                    <span class="letter font-funnel"><span>i</span><span>i</span></span>
+                    <span class="letter font-funnel"><span>c</span><span>c</span></span>
+                    <span class="letter font-funnel"><span>o</span><span>o</span></span>
+                    <span class="letter font-funnel"><span>T</span><span>T</span></span>
+                    <span class="letter font-funnel"><span>a</span><span>a</span></span>
+                    <span class="letter font-funnel"><span>d</span><span>d</span></span>
+                    <span class="letter font-funnel"><span>d</span><span>d</span></span> 
+                    <span class="letter font-funnel"><span>i</span><span>i</span></span>
+                    <span class="letter font-funnel"><span>a</span><span>a</span></span>
+                </li>
+                <li class="[&_span]:p-1 [&_span]:text-[4rem] md:!hidden">
+                    <span class="letter font-funnel"><span>F</span><span>F</span></span>
+                    <span class="letter font-funnel"><span>e</span><span>e</span></span>
+                    <span class="letter font-funnel"><span>d</span><span>d</span></span>
+                    <span class="letter font-funnel"><span>e</span><span>e</span></span>
+                    <span class="letter font-funnel"><span>r</span><span>r</span></span> 
+                    <span class="letter font-funnel"><span>i</span><span>i</span></span>
+                    <span class="letter font-funnel"><span>c</span><span>c</span></span>
+                    <span class="letter font-funnel"><span>o</span><span>o</span></span>
+                </li>
+                <li class="[&_span]:p-1 [&_span]:text-[4rem] md:!hidden">
+                    <span class="letter font-funnel"><span>T</span><span>T</span></span>
+                    <span class="letter font-funnel"><span>a</span><span>a</span></span>
+                    <span class="letter font-funnel"><span>d</span><span>d</span></span>
+                    <span class="letter font-funnel"><span>d</span><span>d</span></span>
+                    <span class="letter font-funnel"><span>i</span><span>i</span></span> 
+                    <span class="letter font-funnel"><span>a</span><span>a</span></span>
+                </li>
+            </ul>
+            <div class="flex ites-center justify-center lg:gap-14 gap-4 motion-button transition-main-left lg:flex-row flex-col lg:mt-0 mt-10">
+              {% include 'components/marquee-button.twig' with { label: 'Scrivo', destination: '/scrivo', color: 'orange', width: 'w-28', animation: 'transition-button-1', page: 'page1'} %}
+              {% include 'components/marquee-button.twig' with { label: 'Parlo', destination: '/parlo/', color: 'purple', width: 'w-28', animation: 'transition-button-2', page: 'page2'} %}
+              {% include 'components/marquee-button.twig' with { label: 'Scrivo per altri che parlano', destination: '/scrivo-per-altri-che-parlano', color: 'green', width: 'w-78', animation: 'transition-button-3', page: 'page3'} %}
+              </div>  
+            </div>
+        </div>
+      </div>
+      <div class="medias">
+          {% for image in options.images_home %}
+          <img src="{{image.url}}" alt="">
+          {% endfor %}
+      </div>
+      <div class="hidden">
+        {{ do_shortcode('[facetwp template="parlo_posts"]') }}
+      </div>
+        <div class="absolute bottom-0 w-full">
+          {% include "partials/footer.twig" %}   
+        </div>
   </section>
-  <section class="flex h-svh w-full flex-col items-center justify-center">
-    <h2 class="text-4xl xl:text-9xl">Sezione</h2>
-  </section>
+
+{% include 'components/prossimamente.twig' %}
+
 {% endblock content %}

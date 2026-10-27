@@ -3,7 +3,7 @@
         'name' => 'localghost/wp-starter',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'fef57fd00520543d6a1fadb6bd5bf4cfaa5109b6',
+        'reference' => 'fe87bb95e364e26dbb16e4ea820fec352f93b5e0',
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'localghost/wp-starter' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'fef57fd00520543d6a1fadb6bd5bf4cfaa5109b6',
+            'reference' => 'fe87bb95e364e26dbb16e4ea820fec352f93b5e0',
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,0 +1,77 @@
+{% set bg_classes = {
+  orange: 'bg-[#F2660E]',
+  purple: 'bg-[#6F24BC]',
+  green: 'bg-[#22A44D]'
+} %}
+{# tag: 'a' (default, navigates via swup) or 'button' (action button, e.g. load more; pass extra attributes via attrs) #}
+{% set tag = tag|default('a') %}
+
+<div class="lg:mt-10 mt-0 flex items-center justify-center"
+     x-data="{ 
+       showText: true, 
+       isClicked: false, 
+       isHovering: false 
+     }">
+
+  <{{ tag }}
+    @mouseenter="
+      if (!isClicked) {
+        isHovering = true;
+      }
+    "
+    @mouseleave="
+      if (!isClicked) {
+        isHovering = false;
+      }
+    "
+    {% if tag == 'a' %}
+    @click="isClicked = !isClicked"
+    href="{{ destination }}"
+    data-swup-animation="{{ page }}"
+    {% else %}
+    type="button"
+    {{ attrs|default('')|raw }}
+    {% endif %}
+    class="font-funnel relative uppercase {{ bg_classes[color] }} inline-block cursor-pointer overflow-hidden font-light {{ width }} {{ animation }}  h-12 text-white"
+
+  >
+    <!-- Static centered text -->
+    <div 
+      x-show="showText && !isHovering"
+      x-transition
+      class="absolute inset-0 flex items-center justify-center"
+    >
+      {{ label }}
+    </div>
+
+    <!-- Marquee text when hovering -->
+    <template x-if="showText && isHovering">
+      <div class="absolute inset-0 overflow-hidden whitespace-nowrap flex items-center">
+        {# duration based on distance travelled (half the track) so every button scrolls at the same px/s #}
+        <div class="inline-block animate-marquee"
+             x-init="$el.style.animationDuration = ($el.scrollWidth / 2 / 40) + 's'">
+          <span class="mx-2">{{ label }}</span>
+          <span class="mx-2">{{ label }}</span>
+          <span class="mx-2">{{ label }}</span>
+          <span class="mx-2">{{ label }}</span>
+        </div>
+      </div>
+    </template>
+  </{{ tag }}>
+
+  <!-- Marquee CSS -->
+  <style>
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .animate-marquee {
+      animation: marquee 4s linear infinite;
+    }
+
+    .animate-marquee-2 {
+      animation: marquee 8s linear infinite;
+    }
+  </style>
+</div>

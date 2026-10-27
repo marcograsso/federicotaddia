@@ -1,0 +1,91 @@
+<div class="content-wrapper">
+  <div id="page-header" class="w-min bg-white">
+    {% include "components/header.twig" with {
+      color: "dark",
+      animation: "transition-header-up",
+      homepage: "homepage4"
+    } %}
+  </div>
+
+  <div
+    class="md:mt-0 mt-50 !pointer-events-none flex w-full flex-col items-center justify-center flex-nowrap md:flex-row-reverse md:px-8"
+  >
+
+    <!-- credits column -->
+    <div
+      class="transition-bio-top  w-full overflow-scroll pt-10 pb-20 md:w-2/3 mx-auto md:pt-[15rem]"
+    >
+      <div
+        class="mwg_effect027 mwg_effect027-bio mwg_effect027-align-left ml-4 md:ml-[1.4rem]"
+      >
+        <ul>
+          <li>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>C</span><span>C</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>r</span><span>r</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>e</span><span>e</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>d</span><span>d</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>i</span><span>i</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>t</span><span>t</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>s</span><span>s</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mx-6 md:ml-[2rem] pt-[2rem]">
+        {% for credit in options.credits %}
+          <div
+            class="group {% if loop.first %}hover:border-t-transparent border-t-[0]{% endif %} !pointer-events-auto flex w-full cursor-default flex-col items-start gap-2 border-t-[1px] border-b-[1px] border-neutral-300 border-t-transparent py-[2rem] transition-all duration-300 md:w-4/5 md:flex-row md:flex-nowrap md:items-center md:gap-6"
+          >
+            <h2
+              class="font-funnel text-left text-[1.6rem] font-bold transition-all duration-400 group-hover:scale-[1.05] group-hover:text-[#ffc944] selection:bg-[#ffc944] selection:text-white"
+            >
+              {{ credit.label }}
+            </h2>
+            <span
+              class="font-montserrat block transition-all duration-400 group-hover:translate-x-[0.8rem] group-hover:scale-[1.05] group-hover:text-[#ffc944] selection:bg-[#ffc944] selection:text-white"
+            >
+                <span>
+                  {{credit.content}}
+                </span>
+
+                </span>
+            </span>
+          </div>
+        {% endfor %}
+        <div class="mt-10">
+          {% include "partials/internal-footer.twig" %}   
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "components/prossimamente.twig" %}

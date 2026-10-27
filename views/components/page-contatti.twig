@@ -1,0 +1,138 @@
+<div class="content-wrapper overflow-hidden">
+  <div id="page-header" class="w-min bg-white">
+    {% include "components/header.twig" with {
+      color: "dark",
+      animation: "transition-header-up",
+      homepage: "homepage4"
+    } %}
+  </div>
+
+  <div
+    class="!pointer-events-none flex w-full flex-col flex-nowrap  md:flex-row-reverse md:px-8"
+  >
+    <!-- Static image column -->
+    <div
+      class="transition-bio-top-later pointer-events-none relative flex min-h-[38rem] w-full flex-col pt-[13rem] pb-8 md:h-full md:w-1/3 md:pt-[15rem]"
+    >
+      <img
+        src="{{ options.contacts_image.url }}"
+        class="h-full w-full object-contain"
+        alt="Contact Image"
+      />
+    </div>
+
+    <!-- Contacts column -->
+    <div
+      class="transition-bio-top h-full w-full overflow-scroll pt-10 pb-20 md:w-2/3 md:pt-[15rem]"
+    >
+      <div
+        class="mwg_effect027 mwg_effect027-bio mwg_effect027-align-left ml-4 md:ml-[1.4rem]"
+      >
+        <ul>
+          <li>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>C</span><span>C</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>o</span><span>o</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>n</span><span>n</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>t</span><span>t</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>a</span><span>a</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>t</span><span>t</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>t</span><span>t</span>
+            </span>
+            <span
+              class="letter font-funnel mr-3 text-[4rem] md:mr-2 md:text-[5rem] lg:text-[9rem]"
+            >
+              <span>i</span><span>i</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mx-6 md:ml-[2rem] mt-10">
+        {% for contact in options.contacts %}
+          <div
+            class="group {% if loop.first %}hover:border-t-transparent border-t-[0]{% endif %} !pointer-events-auto flex w-full cursor-default flex-col items-start gap-2 border-t-[1px] border-b-[1px] border-neutral-300 border-t-transparent py-[2rem] transition-all duration-300 md:w-4/5 md:flex-row md:flex-nowrap md:items-center md:gap-6"
+          >
+            <h2
+              class="font-funnel text-left text-[1.6rem] font-bold transition-all duration-400 group-hover:scale-[1.05] group-hover:text-[#DC1001] selection:bg-[#DC1001] selection:text-white"
+            >
+              {{ contact.label }}
+            </h2>
+            <span
+              class="font-montserrat block transition-all duration-400 group-hover:translate-x-[0.8rem] group-hover:scale-[1.05] group-hover:text-[#DC1001] selection:bg-[#DC1001] selection:text-white"
+            >
+              {% if contact.type == "email" %}
+                <a href="mailto:{{ contact.email }}" target="_blank" class="md:no-underline underline underline-offset-2">
+                  {{ contact.email }}
+                </a>
+                <span
+                  class="absolute bottom-0 left-0 h-[1.2px] w-0 bg-[#DC1001] transition-all duration-300 group-hover:w-full"
+                >
+
+                </span>
+              {% elseif contact.type == "tel" %}
+                <a href="tel:{{ contact.tel }}" target="_blank" class="md:no-underline underline underline-offset-2">
+                  {{ contact.tel }}
+                </a>
+                <span
+                  class="absolute bottom-0 left-0 h-[1.2px] w-0 bg-[#DC1001] transition-all duration-300 group-hover:w-full"
+                >
+
+                </span>
+              {% elseif contact.type == "link" %}
+                <a href="{{ contact.link.url }}" target="_blank" class="md:no-underline underline underline-offset-2">
+                  {{ contact.link.title }}
+                </a>
+                <span
+                  class="absolute bottom-0 left-0 h-[1.2px] w-0 bg-[#DC1001] transition-all duration-300 group-hover:w-full"
+                >
+
+                </span>
+              {% elseif contact.type == "file" %}
+                <a href="{{ contact.file.url }}" target="_blank" class="md:no-underline underline underline-offset-2" download>
+                  Scarica il file
+                </a>
+                <span
+                  class="absolute bottom-0 left-0 h-[1.2px] w-0 bg-[#DC1001] transition-all duration-300 group-hover:w-full"
+                >
+
+                </span>
+              {% endif %}
+            </span>
+          </div>
+        {% endfor %}
+        <div class="mt-10">
+          {% include "partials/internal-footer.twig" %}   
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "components/prossimamente.twig" %}

@@ -1,0 +1,154 @@
+<div x-data="modalHandler()"
+     x-init="initModal()"
+     x-on:open-prossimamente.window="showModal = true">
+
+  <!-- Modal -->
+  <div x-show="showModal" x-cloak class="fixed inset-0 z-[7000] flex items-center justify-center" id="card-wrapper" >
+    
+    <!-- Background overlay -->
+    <div x-show="backgroundVisible"
+         x-transition.opacity.duration.500ms
+         class="absolute inset-0 backdrop-blur-xs bg-white/20 shadow-lg">
+    </div>
+
+    <!-- Cards container -->
+    <div class="relative w-[50rem] h-[30rem]" id="card-rotation-container">
+      <!-- Card 1 -->
+      <div id="card1"
+           x-show="card1"
+           x-transition
+           :class="closing ? 'animate-bounce-out-down' : 'animate-bounce-in-up'"
+           class="pointer-events-none absolute top-1/2 left-1/2 lg:w-[50rem] lg:h-[30rem] w-full h-[80vh] bg-[#F2660E] transform -translate-x-1/2 -translate-y-[60%] rotate-4">
+          {% include 'components/pross-card.twig' with { role: 'background' } %}
+      </div>
+
+      <!-- Card 2 -->
+      <div id="card2"
+           x-show="card2"
+           x-transition
+           :class="closing ? 'animate-bounce-out-down' : 'animate-bounce-in-up'"
+           class="pointer-events-none absolute top-1/2 left-1/2 lg:w-[50rem] lg:h-[30rem] w-full h-[80vh]  bg-[#2545D7] transform -translate-x-[55%] -translate-y-[55%] -rotate-5">
+          {% include 'components/pross-card.twig' with { role: 'background' } %}
+      </div>
+
+      <!-- Card 3 -->
+      <div id="card3"
+           x-show="card3"
+           x-transition
+           :class="closing ? 'animate-bounce-out-down' : 'animate-bounce-in-up'"
+           class="pointer-events-none absolute top-1/2 left-1/2 lg:w-[50rem] lg:h-[30rem] w-full h-[80vh]  bg-[#FFC943] transform -translate-x-[45%] -translate-y-[40%] rotate-5">
+          {% include 'components/pross-card.twig' with { role: 'background' } %}
+      </div>
+
+      <!-- Card 4 -->
+      <div id="card4"
+           x-show="card4"
+           x-transition
+           :class="closing ? 'animate-bounce-out-down' : 'animate-bounce-in-up'"
+           class="absolute top-1/2 left-1/2 lg:w-[50rem] lg:h-[30rem] w-full h-[80vh]  bg-[#B1A7A7] transform -translate-x-1/2 -translate-y-1/2">
+          {% include 'components/pross-card.twig' with { role: 'first' } %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+@keyframes bounceInUp {
+  0% {
+    transform: translateY(100%) scale(0.9);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-10%) scale(1.05);
+  }
+  80% {
+    transform: translateY(5%) scale(0.97);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceOutDown {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200%) scale(0);
+    opacity: 1;
+  }
+}
+
+.animate-bounce-in-up {
+  animation: bounceInUp 0.7s ease-out forwards;
+}
+
+.animate-bounce-out-down {
+  animation: bounceOutDown 1s ease-in forwards;
+}
+</style>
+<script>
+  function modalHandler() {
+    return {
+      showModal: false,
+      backgroundVisible: false,
+      card1: false,
+      card2: false,
+      card3: false,
+      card4: false,
+      closing: false,
+
+      initModal() {
+        this.$watch('showModal', value => {
+          if (value) {
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => this.backgroundVisible = true, 100);
+            setTimeout(() => this.card1 = true, 200);
+            setTimeout(() => this.card2 = true, 400);
+            setTimeout(() => this.card3 = true, 600);
+            setTimeout(() => this.card4 = true, 800);
+          } else {
+            document.body.style.overflow = '';
+          }
+        });
+
+        // Listen for external trigger
+        window.addEventListener('open-prossimamente', () => {
+          this.showModal = true;
+        });
+      },
+
+      closeModal() {
+  this.closing = true;
+  setTimeout(() => this.card4 = false, 500);
+  setTimeout(() => this.card3 = false, 600);
+  setTimeout(() => this.card2 = false, 700);
+  setTimeout(() => this.card1 = false, 800);
+  setTimeout(() => {
+    this.backgroundVisible = false;
+    this.showModal = false;
+    this.closing = false;
+  }, 1000);
+}
+
+    }
+  }
+
+  
+</script>
+
+
+<style>
+#card-wrapper {
+  perspective: 1200px;
+}
+#card-rotation-container {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+</style>
+

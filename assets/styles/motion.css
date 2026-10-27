@@ -1,0 +1,441 @@
+/* -------- EFFECT 021 -------- */
+
+.mwg_effect021 {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+.mwg_effect021 .motion-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    gap: 3vw;
+}
+.mwg_effect021 .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.mwg_effect021 .header p {
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    font-size: 16px;
+}
+.mwg_effect021 > img {
+    position: absolute; /* or remove to test */
+    border-radius: 0;
+    max-width: 17vw;
+    max-height: 17vw;
+    object-fit: contain;
+    z-index: 5;
+    top: 0; /* add explicit position */
+    left: 0;
+  }
+
+.mwg_effect021 .title {
+    text-align: center;
+    text-transform: uppercase;
+    font: 500 normal 8vw / 0.8 'Inter', sans-serif;
+    letter-spacing: -0.05em;
+    width: 77%;
+}
+.mwg_effect021 .text {
+    font: 500 normal clamp(12px, 0.9vw, 100px) / normal 'IBM Plex Mono';
+    text-transform: uppercase;
+    max-width: 34vw;
+    text-align: center;
+}
+
+.mwg_effect021 .medias img {
+    max-width: 1px;
+    max-height: 1px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* -------- EFFECT 027 -------- */
+
+.mwg_effect027 {
+    padding: 100vh 0;
+}
+
+.mwg_effect027-internal {
+    padding: 0;
+}
+
+.mwg_effect027-bio {
+  padding: 0;
+}
+
+.mwg_effect027 .scroll {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.mwg_effect027 ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.mwg_effect027-align-center ul {
+  align-items: center !important;
+}
+
+.mwg_effect027-align-left ul {
+  align-items: left !important;
+}
+
+.mwg_effect027 li {
+    font: 500 180px / .8 'Inter', sans-serif;
+    letter-spacing: -.06em;
+    overflow: hidden;
+    display: flex;
+}
+.mwg_effect027 .letter {
+    position: relative; /* Establishes a reference for the child with absolute positioning */
+    display: inline-block;
+}
+.mwg_effect027 .letter span:last-child {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+}
+
+
+/* -------- SWUP STYLES -------- */
+/* From homepage buttons transition */
+
+a.transition-button-1,
+a.transition-button-2,
+a.transition-button-3 {
+  color: white;
+  text-decoration: none; /* optional, remove underline if needed */
+}
+
+.transition-button-1,
+.transition-button-2,
+.transition-button-3 {
+    transform: scale(1);
+    color: white;
+    z-index: 7000;
+    transition: transform 1s ease, color 1s ease, z-index 1s;
+  }
+
+
+  html.to-page1 .transition-button-1,
+  html.to-homepage1 .transition-button-1 {
+    transform: scale(25);
+    color: transparent;
+    z-index: 8000;
+  }
+
+  html.to-page2 .transition-button-2,
+  html.to-homepage2 .transition-button-2 {
+    transform: scale(25);
+    color: transparent;
+    z-index: 8000;
+  }
+
+  html.to-page3 .transition-button-3,
+  html.to-homepage3 .transition-button-3 {
+    transform: scale(25);
+    color: transparent;
+    z-index: 8000;
+  }
+
+  .transition-main-right,
+  .transition-main-left {
+    margin-left: 0rem;
+    margin-right: 0rem;
+    transition: all 1s;
+  }
+
+
+  html.to-bio .transition-main-right,
+  html.to-homepage4 .transition-main-right {
+    margin-left: 200vw;
+    
+  }
+
+  html.to-bio .transition-main-left,
+  html.to-homepage4 .transition-main-left {
+    margin-right: 200vw; 
+  }
+
+  html.to-homepage4 .transition-arrow {
+   opacity: 0;
+  }
+
+
+/* --- ON LOAD ANIMATIONS -- */
+
+.content1 {
+  position: relative;
+  opacity: 1;
+  /* none (not translateY(0)) so footer mix-blend-mode isn't isolated */
+  transform: none;
+  transition: opacity 1s, transform 1s;
+}
+
+html.is-rendering .content1   {
+  opacity: 0;
+  transform: translateY(12rem);
+}
+
+html.is-leaving .content1  {
+  opacity: 0;
+  transform: translateY(12rem);
+  }
+
+
+/* -------- SWUP STYLES - sub-page header -------- */
+
+/* Default height */
+.transition-swipe {
+    height: 400px;
+    transition: height 1.2s ease-in-out;
+  }
+
+
+.transition-content2 {
+    opacity: 1;
+    transform: translateY(0rem);
+    transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+    transition-delay: 1.3s, 1.3s;
+  }
+
+.transition-content3 {
+  opacity: 1;
+  transform: translateY(0rem);
+  transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+  transition-delay: 1.7s, 1.7s;
+  }
+
+.transition-title,
+.transition-header {
+    transform: translateY(0rem);
+    transition: transform 0.8s;
+}
+
+  .transition-bio-top,
+  .transition-bio-top-later {
+    /* relative keeps it painted above the absolute header (which translateY(0) used to do)
+       without creating a stacking context that would isolate the footer blend */
+    position: relative;
+    transform: none;
+  }
+  
+    html.is-rendering .transition-bio-top {
+      animation: enterFromBottom 1.2s forwards ease-in-out;
+    }
+  
+    html.is-leaving .transition-bio-top {
+      animation: enterFromTop 1.2s forwards ease-in-out;
+    }
+
+    html.is-rendering .transition-bio-top-later {
+      animation: enterFromBottomLater 1.8s forwards ease-in-out;
+    }
+  
+    html.is-leaving .transition-bio-top-later {
+      animation: enterFromTopLater 1.8s forwards ease-in-out;
+    }
+
+  
+  /* On leave: animate from 400px → 100vh */
+  html.to-homepage1 .transition-swipe,
+  html.to-homepage2 .transition-swipe,
+  html.to-homepage3 .transition-swipe,
+  html.to-archive .transition-swipe {
+    height: 100vh;
+  }
+
+  html.is-rendering .transition-title   {
+    transform: translateY(12rem);
+  }
+
+  html.is-leaving .transition-title  {
+    transform: translateY(12rem);
+    }
+
+  html.to-homepage1 .transition-header ,
+  html.to-homepage2 .transition-header ,
+  html.to-homepage3 .transition-header,
+  html.to-archive .transition-header,
+  html.to-bio2 .transition-header   {
+    transform: translateY(-15rem);
+  }
+  
+  /* On enter: set initial height to 100vh before animating down */
+  html.to-page1 .transition-swipe,
+  html.to-page2 .transition-swipe,
+  html.to-page3 .transition-swipe,
+  html.to-archive .transition-swipe {
+    height: 100vh;
+    animation: enterFromFull 1.2s forwards ease-in-out;
+  }
+
+
+  html.to-page1 .transition-header,
+  html.to-page2 .transition-header,
+  html.to-page3 .transition-header   {
+    transform: translateY(-15rem);
+    }
+
+  .transition-white {
+    height: 0vh;
+  }
+
+  html.to-bio2 .transition-white {
+    height: 100vh;
+    animation: enterWhite 1.2s forwards ease-in-out;
+  }
+
+  html.to-archive .transition-white {
+    height: 100vh;
+    animation: exitWhite 1.2s forwards ease-in-out;
+  }
+
+
+  .transition-header-up {
+    transform: translateY(0rem);
+  }
+
+  html.to-bio2 .transition-header-up {
+    transform: translateY(-15rem);
+    animation: enterHeader 1.2s forwards ease-in-out;
+  }
+
+
+  html.to-archive .transition-header-up {
+    transform: translateY(-15rem);
+    animation: exitHeader 1.2s forwards ease-in-out;
+  }
+
+  .transition-color1,
+  .transition-color2,
+  .transition-color3 {
+    width: 0%;
+    transition: all 0.8s;
+  }
+
+  html.to-same1 .transition-color1 {
+    width: 100%;
+  }
+
+  html.to-same2 .transition-color2 {
+    width: 100%;
+  }
+
+  html.to-same3 .transition-color3 {
+    width: 100%;
+  }
+
+  
+  @keyframes enterFromFull {
+    from {
+      height: 100vh;
+    }
+    to {
+      height: 400px;
+    }
+  }
+
+  @keyframes enterWhite {
+    from {
+      height: 0vh;
+    }
+    to {
+      height: 100vh;
+    }
+  }
+
+  @keyframes exitWhite {
+    from {
+      height: 100vh;
+    }
+    to {
+      height: 0vh;
+    }
+  }
+
+  @keyframes enterHeader {
+    from {
+      transform: translateY(-15rem);
+    }
+    to {
+      transform: translateY(0rem);
+    }
+  }
+
+  @keyframes exitHeader {
+    from {
+      transform: translateY(0rem);
+    }
+    to {
+      transform: translateY(-15rem);
+    }
+  }
+
+  @keyframes enterFromBottom {
+    from {
+      transform: translateY(100vh);
+    }
+    to {
+      transform: translateY(0vh);
+    }
+  }
+
+  @keyframes enterFromTop {
+    from {
+      transform: translateY(0vh);
+    }
+    to {
+      transform: translateY(100vh);
+    }
+  }
+  
+  @keyframes enterFromBottomLater {
+    0% {
+      transform: translateY(100vh);
+    }
+    29.9% {
+      transform: translateY(100vh);
+    }
+    30% {
+      transform: translateY(100vh);
+    }
+    100% {
+      transform: translateY(0vh);
+    }
+  }
+
+  @keyframes enterFromTopLater {
+    0% {
+      transform: translateY(0vh);
+    }
+    29.9% {
+      transform: translateY(0vh);
+    }
+    30% {
+      transform: translateY(0vh);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+  
+
+/* -------- SWUP STYLES - button -------- */

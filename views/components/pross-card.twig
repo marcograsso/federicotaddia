@@ -1,0 +1,82 @@
+<div class="w-full h-full relative">
+    <!-- Marquee text when hovering -->
+      <div class="absolute overflow-hidden whitespace-nowrap flex items-center top-0 left-0 w-full py-4 border-b border-white {% if role == 'first' %} bg-[#B1A7A7] z-100 {% endif %}">
+        <div class="inline-block animate-marquee-2">
+          {% for i in 1..10 %}
+            <span class="mx-2 text-white">PROSSIMAMENTE</span>
+          {% endfor %}
+        </div>
+      </div>
+      
+      <div class="w-full h-full p-6 pt-20 flex flex-col group overflow-scroll custom-bar">
+        {% if options.events %}
+          {% for event in options.events %}
+            <div
+              class="font-montserrat w-full flex flex-col text-white py-2 {% if role == 'background' %} pointer-events-none {% endif %}
+                      opacity-100 transition-opacity duration-200">
+              <span class="text-sm flex flex-row gap-2 items-center">
+                <span class="h-full mt-1">→</span>
+                <span class="uppercase font-semibold mt-[0.5]">{{event.label}}</span>
+                {% if event.link %}
+                  <a href="{{event.link.url}}" target="_blank" class="rounded-sm px-1 hover:bg-white hover:text-[#b1a7a6] border border-white">Link</a>
+                {% endif %}
+              </span>
+              {% if event.subtitle %}
+              <span class="mt-1 ml-5 text-xs !font-300 italic">{{event.subtitle}}</span>
+              {% endif %}
+              {% if event.location and event.date %}
+                <span class="mt-1 ml-5 text-xs !font-300">{{event.location}} | {{event.date}}</span>
+              {% else %}
+                <span class="ml-5 text-xs !font-300">{{event.location}}{{event.date}}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% else %}
+            <span class="uppercase text-sm flex flex-row text-white font-bold">NON CI SONO EVENTI IN PROGRAMMA AL MOMENTO!<br> TORNA PIÙ TARDI PER ALTRI AGGIORNAMENTI</span>
+        {% endif %}
+      </div>
+
+
+    {% if role == 'first' %}
+      <div @click="closeModal()" class="hover:border-1 border border-white text-white text-xl absolute top-3 right-5 cursor-pointer z-200 bg-[#B1A7A7] h-[2rem] w-[2rem] flex items-center justify-center">
+        ✕ 
+      </div>
+    {% endif %}
+    
+</div>
+
+  <style>
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .animate-marquee {
+      animation: marquee 4s linear infinite;
+    }
+
+    .animate-marquee-2 {
+      animation: marquee 8s linear infinite;
+    }
+
+    .custom-bar {
+      scrollbar-width: thin !important; /* For Firefox */
+      scrollbar-color: #B1A7A7 transparent !important; /* For Firefox */
+    }
+
+    /* For WebKit browsers */
+    .custom-bar::-webkit-scrollbar {
+      width: 1px !important; /* Thin vertical scrollbar */
+      height: 2px !important; /* Thin horizontal scrollbar */
+    }
+
+    .custom-bar::-webkit-scrollbar-track {
+      background: transparent !important;
+    }
+
+    .custom-bar::-webkit-scrollbar-thumb {
+      background-color: #B1A7A7 !important;
+    }
+    
+
+  </style>
